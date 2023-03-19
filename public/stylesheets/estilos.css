@@ -1,0 +1,90 @@
+/* limpieza de estilos predefinidos de HTML */
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html{
+    font-size: 62.5%;
+}
+
+
+/*Barra de navegación*/
+.navbar{
+    padding: 0.3rem;
+    background-color: #a6bdd4;
+}
+
+.navbar-collapse{
+    font-size: 1.5rem;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/*Estilos generales*/
+.main{
+    font-size: 1rem;
+    display: grid;
+    align-content: center;
+}
+
+/*Seccion Hero*/
+h1{
+    padding: 2rem;
+    font-size: 4rem;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.main-form{
+    width: 35rem;
+    height: 20rem;
+    padding: 1.5rem;
+    border: 2px solid #000000;
+    margin: 0 auto;
+    margin-top: 2rem;
+    position: relative;
+}
+
+.main-form_table{
+    text-align: center;
+}
+
+.main-section_form_inpbox{
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.form-control{
+    font-size: medium;
+}
+
+.main-section_form_button{
+    padding: 1rem 2.5rem 1 2.5;
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+}
+
+
+.btnconsultar{
+    padding: 2rem 1rem;
+    font-size: medium;
+    
+}
+
+.footer{
+    font-size: 1.3rem;
+    margin-top: 3rem;
+}
+
+/*Adaptable responsivo*/
+@media screen and (max-width: 767px){
+    .navbar-brand{
+        display: none;
+    }
+}

@@ -1,0 +1,46 @@
+/* limpieza de estilos predefinidos de HTML */
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html{
+    font-size: 62.5%;
+}
+
+
+/*Barra de navegación*/
+.navbar{
+    padding: 0.3rem;
+    background-color: #a6bdd4;
+}
+
+.navbar-collapse{
+    font-size: 1.8rem;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.dropdown-menu li{
+    font-size: 1.5rem;
+}
+
+/*Estilos generales*/
+.main{
+    font-size: 1rem;
+    display: grid;
+    align-content: center;
+}
+
+.footer{
+    font-size: 1.3rem;
+    margin-top: 3rem;
+}
+
+/*Adaptable responsivo*/
+@media screen and (max-width: 767px){
+    .navbar-brand{
+        display: none;
+    }
+}

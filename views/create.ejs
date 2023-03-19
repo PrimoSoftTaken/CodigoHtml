@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <!--Metadatos-->
+        <meta charset="UTF-8">
+        <meta name="author" content="Desarrolladores: Andres Cardenas y Jeisson Velosa, Base de datos: Miguel Castañeda">
+        <meta name="description" content="Registro de votaciones COOPUN">
+        <meta name="keywords" content="HTML, CSS, JavaScript">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <!--Bootstrap-->
+        <link rel="stylesheet" type="text/css" href="/dist/css/bootstrap.min.css">
+        <!--CSS-->
+        <link href="/stylesheets/styles.css" rel="stylesheet">
+        <link href="/stylesheets/stylecreate.css" rel="stylesheet">
+        <!--Titulo-->
+        <title>Sistema de votación</title>
+        <!--Favicon-->
+        <link rel="icon" type="image/x-icon" href="/images/favicon_cpun.png">
+    </head>
+    <body>
+        <!-- Encabezado -->
+        <header>
+            <!-- Barra de navegación -->
+            <nav class="navbar navbar-expand-md bg-body-tertiary">
+                <div class="container-fluid">
+                    <!-- Botón dispositivos móviles -->
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <!-- Logotipo y enlaces de navegación -->
+                    <div class="collapse navbar-collapse" id="navbarToggler">
+                        <a class="navbar-brand">
+                            <figure>
+                                <img src="/images/logo_cpun.png" width="250" alt="Logo de la página web">
+                            </figure>
+                        </a>
+                        <ul class="navbar-nav d-flex justify-content-center align-items-center">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="/">Registro</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href='/general'>Listado general</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/create">Preguntas</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link disabled" href="/create">Moderador</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <main class="main">
+            <section class="main-section">
+                <form class="main-section_form" action="/quest" method="post">
+                    <div class="mb-3">
+                        <label for="pregunta" class="form-label">Nueva pregunta</label>
+                        <textarea class="form-control" id="pregunta" name="pregunta" placeholder="ingrese la pregunta" rows="3"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="respuesta1" class="form-label">Respuesta 1</label>
+                        <input type="text" class="form-control" id="respuesta1" name="respuesta1"></input>
+                    </div>
+                    <div class="mb-3">
+                        <label for="respuesta2" class="form-label">Respuesta 2</label>
+                        <input type="text" class="form-control" id="respuesta2" name="respuesta2"></input>
+                    </div>
+                    <div class="mb-3">
+                        <label for="respuesta3" class="form-label">Respuesta 3</label>
+                        <input type="text" class="form-control" id="respuesta3" name="respuesta3"></input>
+                    </div>
+                    <div class="main-section_form_button">
+                        <button type="submit" class="btn btn-success boton" tabindex="5">Guardar</button>
+                        <button type="submit" class="btn btn-primary boton" tabindex="6">Editar</button>
+                        <a href="/" class="btn btn-secondary boton">Cancelar</a>
+                    </div>
+                </form>
+            </section>
+        </main>
+
+        <!--Pie de página-->
+        <footer class="footer">
+            <div class="container-fluid text-center">
+            <p>CooprofesoresUN  <br><b>all right reserved 2023</b> </p>
+            </div>
+        </footer>
+        
+        <!-- JavaScript -->
+        <script src="/javascripts/asamblea.js"></script>
+        <script src="/javascripts/jquery-3.6.3.min.js"></script>
+        <script src="/dist/js/bootstrap.min.js"></script>
+        <script src="/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
+</html>

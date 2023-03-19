@@ -1,0 +1,36 @@
+/*Seccion Hero*/
+.main-section{
+    position: relative;
+    padding: 2rem;
+}
+
+.main-section_form{
+    width: 70rem;
+    height: 50rem;
+    border: 2px solid #000000;
+    padding: 3rem;
+    margin: 0 auto;
+    font-size: medium;
+}
+
+.main-form_table{
+    text-align: center;
+}
+
+.form-control{
+    font-size: small;
+}
+
+.main-section_form_button{
+    padding: 1rem 2.5rem 1 2.5;
+    position: absolute;
+    top: 85%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+.boton{
+    padding: 1.5rem 1rem;
+    font-size: medium;   
+}

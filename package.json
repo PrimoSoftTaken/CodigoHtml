@@ -1,0 +1,29 @@
+{
+  "name": "asambleacooprofesores",
+  "version": "1.0.0",
+  "description": "Registro de votaciones para la Asamblea de profesores",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "votación",
+    "cooprofesores",
+    "asamblea"
+  ],
+  "author": "departamento TIC's",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "bootstrap": "^5.3.0-alpha1",
+    "css": "^3.0.0",
+    "ejs": "^3.1.8",
+    "ejs-lint": "^2.0.0",
+    "express": "^4.18.2",
+    "jquery": "^3.6.3",
+    "mysql": "^2.18.1",
+    "nodemon": "^2.0.21",
+    "pg": "^8.9.0",
+    "postgresql": "^0.0.1"
+  }
+}

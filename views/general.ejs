@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <!--Metadatos-->
+        <meta charset="UTF-8">
+        <meta name="author" content="Desarrolladores: Andres Cardenas y Jeisson Velosa, Base de datos: Miguel Castañeda">
+        <meta name="description" content="Listado delegados">
+        <meta name="keywords" content="HTML, CSS, JavaScript">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <!--Bootstrap-->
+        <link rel="stylesheet" type="text/css" href="/dist/css/bootstrap.min.css">
+        <!--CSS-->
+        <link href="/stylesheets/styles.css" rel="stylesheet">
+        <link href="/stylesheets/stylegeneral.css" rel="stylesheet">
+        <!--Titulo-->
+        <title>Listado delegados</title>
+        <!--Favicon-->
+        <link rel="icon" type="image/x-icon" href="/images/favicon_cpun.png">
+    </head>
+    <body>
+        <!-- Encabezado -->
+        <header>
+            <!-- Barra de navegación -->
+            <nav class="navbar navbar-expand-md bg-body-tertiary">
+                <div class="container-fluid">
+                    <!-- Botón dispositivos móviles -->
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <!-- Logotipo y enlaces de navegación -->
+                    <div class="collapse navbar-collapse" id="navbarToggler">
+                        <a class="navbar-brand">
+                            <figure>
+                                <img src="/images/logo_cpun.png" width="250" alt="Logo de la página web">
+                            </figure>
+                        </a>
+                        <ul class="navbar-nav d-flex justify-content-center align-items-center">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="/">Registro</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href='/general'>Listado general</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/create">Preguntas</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link disabled" href="/create">Moderador</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <main class="main">
+            <section class="main-section">
+                <div class="container">
+                    <table class="main-section_table table table-hover table-bordered table-striped table-center mt-4">
+                        <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Documento</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Tipo</th>
+                                <th scope="col">Hora de registro</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% results.forEach ((user)=> { %>
+                            <tr>
+                                <td><%= user.delegado_id %></td>
+                                <td><%= user.delegado_documento_identificacion %></td>
+                                <td><%= user.delegado_nombres %></td>
+                                <td><%= user.delegado_tipo %></td>
+                                <td><%= user.fecha_hora_registro_entrada %></td>
+                                <!-- <td>
+                                    <a href="/edit" class="btn btn-primary">Editar</a>
+                                    <a href="/delete" class="btn btn-primary">Borrar</a>
+                                </td> -->
+                            </tr>
+                            <% }) %>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+
+        <!--Pie de página-->
+        <footer class="footer">
+            <div class="container-fluid text-center">
+            <p>CooprofesoresUN  <br><b>all right reserved 2023</b> </p>
+            </div>
+        </footer>
+        
+        <!-- JavaScript -->
+        <script src="/javascripts/asamblea.js"></script>
+        <script src="/javascripts/jquery-3.6.3.min.js"></script>
+        <script src="/dist/js/bootstrap.min.js"></script>
+        <script src="/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
+</html>

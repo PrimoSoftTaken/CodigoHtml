@@ -1,0 +1,19 @@
+/*Seccion Hero*/
+.main-section{
+    position: relative;
+    padding: 1.5rem;
+}
+
+.main-section_table{
+    border: 3px solid rgb(0, 0, 0);
+}
+
+.main-section_table th{
+    background-color: rgb(80, 145, 170);
+    font-size: 1.8rem;
+    text-align: center;
+}
+
+.main-section_table td{
+    font-size: 1.5rem;
+}
