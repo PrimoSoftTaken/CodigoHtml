@@ -1,0 +1,45 @@
+/*Seccion Hero*/
+h1{
+  padding: 2rem;
+  font-size: 4rem;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.main-section{
+  position: relative;
+  padding: 1.5rem;
+}
+
+.main-section_form{
+  width: 35rem;
+  height: 20rem;
+  padding: 1.5rem;
+  border: 2px solid #000000;
+  margin: 0 auto;
+  margin-top: 2rem;
+  position: relative;
+}
+
+.main-section_form_inpbox{
+  position: absolute;
+  top: 32%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.form-control{
+  font-size: medium;
+}
+
+.main-section_form_button{
+  padding: 1rem 2.5rem 1 2.5;
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
+}
+
+.boton{
+  font-size: small;
+}

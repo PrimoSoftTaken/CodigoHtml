@@ -1,110 +1,113 @@
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        <!--Metadatos-->
-        <meta charset="UTF-8">
-        <meta name="author" content="Desarrolladores: Andres Cardenas y Jeisson Velosa, Base de datos: Miguel Castañeda">
-        <meta name="description" content="Registro de votaciones COOPUN">
-        <meta name="keywords" content="HTML, CSS, JavaScript">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <!--Bootstrap-->
-        <link rel="stylesheet" type="text/css" href="/dist/css/bootstrap.min.css">
-        <!--CSS-->
-        <link href="/stylesheets/styles.css" rel="stylesheet">
-        <link href="/stylesheets/styleconsulta.css" rel="stylesheet">
-        <!--Titulo-->
-        <title>Sistema de votación</title>
-        <!--Favicon-->
-        <link rel="icon" type="image/x-icon" href="/images/favicon_cpun.png">
-    </head>
-    <body>
-        <!-- Encabezado -->
-        <header>
-            <!-- Barra de navegación -->
-            <nav class="navbar navbar-expand-md bg-body-tertiary">
-                <div class="container-fluid">
-                    <!-- Botón dispositivos móviles -->
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <!-- Logotipo y enlaces de navegación -->
-                    <div class="collapse navbar-collapse" id="navbarToggler">
-                        <a class="navbar-brand">
-                            <figure>
-                                <img src="/images/logo_cpun.png" width="250" alt="Logo de la página web">
-                            </figure>
-                        </a>
-                        <ul class="navbar-nav d-flex justify-content-center align-items-center">
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="/">Registro</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href='/general'>Listado general</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="/create">Preguntas</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link disabled" href="/create">Moderador</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-        </header>
-        
-        <main>
-            <section>
-                <form id="main-form" class="main-form" action="/save" method="post">
-                    <div class="container">
-                        <table class="main-form_table table table-bordered table-striped table-center mt-4">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Asamblea No.</th>
-                                    <th scope="col">ID</th>
-                                    <th scope="col">Documento</th>
-                                    <th scope="col">Nombre</th>
-                                    <th scope="col">Tipo</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <% results.forEach ((user)=> { %>
-                                <tr>
-                                    <td><%= user.asamblea_id %></td>
-                                    <td> <%= user.delegado_id %></td>
-                                    <td><a id="btnregistrar" type="submit"  class="list-group-item list-group-item-action"><%= user.delegado_documento_identificacion %></a></td>
-                                    <td><%= user.delegado_nombres %></td>
-                                    <td><%= user.delegado_tipo %></td>
-                                </tr>
-                                <td>
-                                    <input type="hidden" name="asambleaId" value="<%= user.asamblea_id %>" />
-                                </td>
-                                <td>
-                                    <input type="hidden" name="delegadoId" value="<%= user.delegado_id %>" />
-                                </td>
-                                <% }) %>
-                            </tbody>
-                        </table>
-                        <!-- <div class="main-section_form_button">
-                            <button id="btnregistrar" type="submit" class="btn btn-primary btnregistrar" tabindex="5">Registrar</button>
-                        </div> -->
-                    </div>
-                </form>
-            </section>
-        </main>
 
-        <!--Pie de página-->
-        <footer class="footer">
-            <div class="container-fluid text-center">
-            <p>CooprofesoresUN  <br><b>all right reserved 2023</b> </p>
-            </div>
-        </footer>
-        
-        <!-- JavaScript -->
-        <script src="/javascripts/asamblea.js"></script>
-        <script src="/javascripts/jquery-3.6.3.min.js"></script>
-        <script src="/dist/js/bootstrap.min.js"></script>
-        <script src="/dist/js/bootstrap.bundle.min.js"></script>
-    </body>
+<head>
+  <!--Metadatos-->
+  <meta charset="UTF-8">
+  <meta name="author" content="Desarrolladores: Andres Cardenas y Jeisson Velosa, Base de datos: Miguel Castañeda">
+  <meta name="description" content="Registro de votaciones COOPUN">
+  <meta name="keywords" content="HTML, CSS, JavaScript">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!--Bootstrap-->
+  <link rel="stylesheet" type="text/css" href="/dist/css/bootstrap.min.css">
+  <!--CSS-->
+  <link href="/stylesheets/styles.css" rel="stylesheet">
+  <link href="/stylesheets/styleconsulta.css" rel="stylesheet">
+  <!--Titulo-->
+  <title>Sistema de votación</title>
+  <!--Favicon-->
+  <link rel="icon" type="image/x-icon" href="/images/favicon_cpun.png">
+</head>
+
+<body>
+  <!-- Encabezado -->
+  <header>
+    <!-- Barra de navegación -->
+    <nav class="navbar navbar-expand-md bg-body-tertiary">
+      <div class="container-fluid">
+        <!-- Botón dispositivos móviles -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- Logotipo y enlaces de navegación -->
+        <div class="collapse navbar-collapse" id="navbarToggler">
+          <a class="navbar-brand">
+            <figure>
+              <img src="/images/logo_cpun.png" width="250" alt="Logo de la página web">
+            </figure>
+          </a>
+          <ul class="navbar-nav d-flex justify-content-center align-items-center">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/">Registro</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href='/general'>Listado general</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/create">Preguntas</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/view_questions">Listado de preguntas</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+  
+  <main>
+    <section>
+      <form id="main-form" class="main-form" action="/save" method="post">
+        <div class="container">
+          <table class="main-form_table table table-bordered table-striped table-center mt-4">
+            <thead>
+              <tr>
+                <th scope="col">Asamblea No.</th>
+                <th scope="col">ID</th>
+                <th scope="col">Documento</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Tipo</th>
+              </tr>
+            </thead>
+              <tbody>
+                <% results.forEach ((user)=> { %>
+                <tr>
+                  <td><%= user.asamblea_id %></td>
+                  <td> <%= user.delegado_id %></td>
+                  <td><%= user.delegado_documento_identificacion %></td>
+                  <td><%= user.delegado_nombres %></td>
+                  <td><%= user.delegado_tipo %></td>
+                </tr>
+                <tr>
+                  <td>
+                      <input type="hidden" name="asambleaId" value="<%= user.asamblea_id %>" />
+                      <input type="hidden" name="delegadoId" value="<%= user.delegado_id %>" />
+                  </td>
+                </tr>
+                <% }) %>
+              </tbody>
+          </table>
+          <div class="main-section_form_button">
+              <button id="btnregistrar" type="submit" class="btn btn-primary btnregistrar" tabindex="5">Registro inicial</button>
+          </div>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <!--Pie de página-->
+  <footer class="footer">
+    <div class="container-fluid text-center">
+      <p>CooprofesoresUN  <br><b>all right reserved 2023</b> </p>
+    </div>
+  </footer>
+  
+  <!-- JavaScript -->
+  <script src="/javascripts/asamblea.js"></script>
+  <script src="/javascripts/jquery-3.6.3.min.js"></script>
+  <script src="/dist/js/bootstrap.min.js"></script>
+  <script src="/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
 </html>

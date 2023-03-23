@@ -1,0 +1,31 @@
+.table{
+  position: center;
+  padding: 1.5rem;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.table-bordered {
+  border: 2px solid rgb(0, 0, 0);
+}
+
+.table-striped th {
+  background-color: rgb(80, 145, 170);
+  font-size: 1.8rem;
+  text-align: center;
+}
+
+.table-center td {
+  font-size: 1.5rem;
+}
+
+.table, .main-table_th {
+  font-family: 'Quicksand', sans-serif;
+  text-align: center;
+  font-size: 1.8rem;
+}
+
+.highlight {
+  color: white;
+  background-color: red;
+}
