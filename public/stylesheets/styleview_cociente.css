@@ -1,0 +1,65 @@
+.table{
+  position: center;
+  padding: 1.5rem;
+  text-align: center;
+  margin: 1rem;
+}
+
+.table-bordered {
+  border: 2px solid rgb(0, 0, 0);
+}
+
+.table-striped th {
+  background-color: rgb(80, 145, 170);
+  font-size: 1.8rem;
+  text-align: center;
+}
+
+.table-center td {
+  font-size: 1.5rem;
+}
+
+.table, .main-table_th {
+  font-family: 'Quicksand', sans-serif;
+  text-align: center;
+  font-size: 1.8rem;
+}
+
+.sect-cabecera{
+  padding: 1.2rem;
+}
+
+.tlabel{
+  text-align: right;
+  font-size: 3rem;
+}
+
+.plabel{
+  text-align: left;
+  font-size: 3rem;
+}
+
+.tvotos{
+  text-align: center;
+  font-size: 2.5em;
+}
+
+.tcociente{
+  text-align: center;
+  font-size: 2.5rem;
+}
+
+.pvotos{
+  text-align: left;
+  font-size: 2rem;
+}
+
+.pcociente{
+  text-align: left;
+  font-size: 2rem;
+}
+
+.sect-body{
+  padding: 1.3rem;
+  border-bottom:4px solid rgb(18, 17, 17);
+}

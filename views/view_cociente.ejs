@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+
+  <head>
+<!--Metadatos-->
+    <meta charset="UTF-8">
+    <meta name="author" content="Desarrolladores: Jeisson Velosa y Andres Cardenas, Base de datos: Miguel Castañeda">
+    <meta name="description" content="Registro de votaciones COOPUN">
+    <meta name="keywords" content="HTML, CSS, JavaScript">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!--Bootstrap-->
+    <link rel="stylesheet" type="text/css" href="/dist/css/bootstrap.min.css">
+<!--CSS-->
+    <link href="/stylesheets/styles.css" rel="stylesheet">
+    <link href="/stylesheets/styleview_cociente.css" rel="stylesheet">
+<!--Titulo-->
+    <title>Sistema de votación</title>
+<!--Favicon-->
+    <link rel="icon" type="image/x-icon" href="/images/favicon_cpun.png">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;500;700&display=swap" rel="stylesheet">
+  </head>
+
+<body>
+  <header>
+<!--Barra de navegación-->
+    <div class="container-fluid">
+      <nav class="navbar navbar-expand-md bg-body-tertiary">
+        <div class="container-fluid">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler"
+            aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarToggler">
+            <a class="navbar-brand">
+              <figure>
+                <img src="/images/logo_cpun.png" width="250" alt="Logo de la página web">
+              </figure>
+            </a>
+            <ul class="navbar-nav d-flex justify-content-center align-items-center">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/">Registro</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href='/general'>Listado general</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/create">Moderador</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/view_questions">Listado de preguntas</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <section>
+      <div class="container">
+    <!-- Visualizacion de la pregunta -->
+    <table class="table table-bordered table-striped table-center">
+      <thead>
+        <tr>
+          <th class="col-md-2 main-table_th" scope="col">Pregunta #</th>
+          <th class="col-md-10 main-table_th" scope="col">Enunciado Pregunta</th>
+        </tr>
+      </thead>
+        <tbody>
+          <% if (results.length > 0) { %>
+          <tr>              
+          <td class="main-table_td"><%=results[0].orden_pregunta %></td>
+          <td class="main-table_td"><%=results[0].pregunta_enunciado %></td>
+          </tr>
+          <% } %>
+        </tbody>
+    </table>
+      </div>
+    </section>
+
+    <!-- Tabla presentación de una pregunta seleccionada -->
+    <section class="sect-cabecera">
+      <div class="container">
+        <div class="d-flex">
+          <div class="p-sm-2 flex-fill tlabel">Cargo: </div>
+          <div class="p-sm-2 flex-fill plabel">Principal</div>
+        </div>
+        <!-- Visualización resultados couciente -->
+        <div class="d-flex">
+          <% results1.forEach(function(row) { %>
+          <div class="p-sm-1 flex-fill tvotos">Votos válidos</div>
+          <div class="p-sm-2 flex-fill pvotos"><%= row.votos_validos %></div>
+          <% }); %>
+          <% results2.forEach(function(row) { %>
+          <div class="p-sm-1 flex-fill tcociente">Cuociente</div>
+          <div class="p-sm-2 flex-fill pcociente"><%= row.cuociente %></div>
+          <% }); %>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect-body">
+      <div class="container">
+        <!-- Zona para visualizar los resultados de la pregunta seleccionada -->
+        <table class="table table-bordered table-striped table-center mt-4">
+          <thead>
+            <tr class="main-table_tr">
+              <th scope="col">Opción</th>
+              <th scope="col">Cifra repartidora</th>
+              <th scope="col">Curules Cuociente</th>
+              <th scope="col">Curules Residuo</th>
+              <th scope="col">Total Curules</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% results3.forEach(function(row) { %>
+            <tr class="main-table_tr">
+              <td><%= row.pregunta_opcion_enunciado %></td>
+              <td><%= row.cifra_repartidora %></td>
+              <td><%= row.curules_cuociente %></td>
+              <td><%= row.curules_residuo %></td>
+              <td><%= row.total_curules %></td>
+            </tr>
+            <% }); %>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="sect-cabecera">
+      <div class="container">
+        <div class="d-flex">
+          <div class="p-sm-2 flex-fill tlabel">Cargo: </div>
+          <div class="p-sm-2 flex-fill plabel">Suplente</div>
+        </div>
+        <!-- Visualización resultados cociente -->
+        <div class="d-flex">
+          <% results4.forEach(function(row) { %>
+          <div class="p-sm-1 flex-fill tvotos">Votos válidos</div>
+          <div class="p-sm-2 flex-fill pvotos"><%= row.votos_validos %></div>
+          <% }); %>
+          <% results5.forEach(function(row) { %>
+          <div class="p-sm-1 flex-fill tcociente">Cuociente</div>
+          <div class="p-sm-2 flex-fill pcociente"><%= row.cuociente %></div>
+          <% }); %>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <!-- Zona para visualizar los resultados de la pregunta seleccionada -->
+        <table class="table table-bordered table-striped table-center mt-4">
+          <thead>
+            <tr class="main-table_tr">
+              <th scope="col">Opción</th>
+              <th scope="col">Cifra repartidora</th>
+              <th scope="col">Curules Cuociente</th>
+              <th scope="col">Curules Residuo</th>
+              <th scope="col">Total Curules</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% results6.forEach(function(row) { %>
+            <tr class="main-table_tr">
+              <td><%= row.pregunta_opcion_enunciado %></td>
+              <td><%= row.cifra_repartidora %></td>
+              <td><%= row.curules_cuociente %></td>
+              <td><%= row.curules_residuo %></td>
+              <td><%= row.total_curules %></td>
+            </tr>
+            <% }); %>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>  
+<!-- JavaScript -->
+<script src="/javascripts/asamblea.js"></script>
+<script src="/javascripts/jquery-3.6.3.min.js"></script>
+<script src="/dist/js/bootstrap.min.js"></script>
+<script src="/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

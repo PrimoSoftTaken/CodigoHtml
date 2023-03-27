@@ -56,19 +56,23 @@
           <table class="main-section_table table table-hover table-bordered table-striped table-center mt-4">
             <thead>
               <tr>
-                <th class="col-md-2 main-table_th" scope="col">#</th>
-                <th class="col-md-2 main-table_th" scope="col">Documento</th>
-                <th class="col-md-6 main-table_th"scope="col">Nombre</th>
+                <th class="col-md-1 main-table_th" scope="col"># Delegados</th>
+                <th class="col-md-1 main-table_th" scope="col">Cod. Alterno</th>
+                <th class="col-md-1 main-table_th" scope="col">N° Documento</th>
+                <th class="col-md-6 main-table_th"scope="col">Nombre del delegado</th>
+                <th class="col-md-1 main-table_th"scope="col">Tipo</th>
                 <th class="col-md-2 main-table_th"scope="col">Estado en Sala</th>
               </tr>
             </thead>
             <tbody>
               <% results.forEach ((user , index)=> { %>
-              <tr class="<%= user.estado_asistencia === 'FUERA DE SALA' ? 'highlight' : '' %>">
+              <tr class="<%= user.estado === 'FUERA DE SALA' ? 'highlight' : '' %>">
                 <td><%= index + 1 %></td>
+                <td><%= user.codigo_asamblea %></td>
                 <td><%= user.delegado_documento_identificacion %></td>
                 <td><%= user.delegado_nombres %></td>
-                <td><%= user.estado_asistencia %></td>
+                <td><%= user.delegado_tipo%></td>
+                <td><%= user.estado %></td>
               </tr>
               <% }) %>
             </tbody>

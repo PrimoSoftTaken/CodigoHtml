@@ -45,7 +45,7 @@ exports.read = (req,res)=>{
     /* se asigna la cédula recibida a una constante */
     const cedula = (req.body.cedula);
     /* Query de búsqueda a la base de datos por el número de cedula*/
-    const search = `SELECT a.asamblea_id, d.delegado_id ,d.delegado_documento_identificacion , d.delegado_nombres , d.delegado_tipo FROM emodel.asamblea a, emodel.delegado d WHERE  d.delegado_documento_identificacion = '${cedula}'`;
+    const search = `SELECT a.asamblea_id, d.delegado_id, d.delegado_codigo_alterno ,d.delegado_documento_identificacion , d.delegado_nombres , d.delegado_tipo FROM emodel.asamblea a, emodel.delegado d WHERE  d.delegado_documento_identificacion = '${cedula}'`;
     
     /* método que ejecuta el query y devuelve el resultado o el error obtenidos */
     conexion.query(search, (error, results) =>{
@@ -58,22 +58,109 @@ exports.read = (req,res)=>{
 }
 
 exports.pregunta = (req, res) => {
-    /* Query de búsqueda una pregunta especifica por ID y envía el enunciado y el # de la pregunta*/
-    const idPregunta = (req.body.pregunta_id);
-    
-    //const TexPregunta = `SELECT pa.pregunta_id, pa.orden_pregunta, pa.pregunta_enunciado FROM emodel.pregunta_asamblea pa WHERE pa.pregunta_id = '${idPregunta}'`;
+  const idPregunta = req.body.pregunta_id;
 
-    const TexPregunta = `SELECT pa.pregunta_id, pa.orden_pregunta, pa.pregunta_enunciado, po.pregunta_opcion_ordinal || po.pregunta_opcion_enunciado AS opcion_enunciado, crpm.votos_opcion FROM emodel.pregunta_asamblea pa INNER JOIN emodel.pregunta_opciones po ON pa.pregunta_id = po.pregunta_id LEFT OUTER JOIN emodel.calcula_resultado_pregunta_mayoria crpm ON crpm.opcion_id = po.pregunta_opcion_id WHERE pa.pregunta_id = '${idPregunta}' ORDER BY po.pregunta_id, po.pregunta_opcion_orden;`;
-    
+  const TexPregunta = `SELECT pa.pregunta_id, pa.orden_pregunta, pa.pregunta_enunciado, po.pregunta_opcion_ordinal || po.pregunta_opcion_enunciado AS opcion_enunciado, crpm.votos_opcion, crpm.minimo_valor_triunfo umbral_minimo FROM emodel.pregunta_asamblea pa INNER JOIN emodel.pregunta_opciones po ON pa.pregunta_id = po.pregunta_id LEFT OUTER JOIN emodel.calcula_resultado_pregunta_mayoria crpm ON crpm.opcion_id = po.pregunta_opcion_id WHERE pa.pregunta_id = '${idPregunta}' ORDER BY po.pregunta_id, po.pregunta_opcion_orden;`;
+
+  const votosp = `SELECT DISTINCT votos_validos 
+                  FROM emodel.calcula_resultado_pregunta_cuociente rpc 
+                  INNER JOIN emodel.pregunta_asamblea pa ON pa.pregunta_id = rpc.pregunta_id 
+                  WHERE pa.bandera_votacion = 'A' AND cargo = 'PRINCIPAL';`;
+
+  const votoss = `SELECT DISTINCT votos_validos 
+                  FROM emodel.calcula_resultado_pregunta_cuociente rpc 
+                  INNER JOIN emodel.pregunta_asamblea pa ON pa.pregunta_id = rpc.pregunta_id 
+                  WHERE pa.bandera_votacion = 'A' AND cargo = 'SUPLENTES';`;
+
+  const coucientep = `SELECT DISTINCT cuociente 
+                    FROM emodel.calcula_resultado_pregunta_cuociente rpc 
+                    INNER JOIN emodel.pregunta_asamblea pa ON pa.pregunta_id = rpc.pregunta_id 
+                    WHERE pa.bandera_votacion = 'A' AND cargo = 'PRINCIPAL';`;
+  
+  const coucientes = `SELECT DISTINCT cuociente 
+                    FROM emodel.calcula_resultado_pregunta_cuociente rpc 
+                    INNER JOIN emodel.pregunta_asamblea pa ON pa.pregunta_id = rpc.pregunta_id 
+                    WHERE pa.bandera_votacion = 'A' AND cargo = 'SUPLENTES';`;
+
+  const curulesp = `SELECT po.pregunta_opcion_enunciado, rpc.curules_cuociente + rpc.cuociente_residuo AS cifra_repartidora, 
+                    rpc.curules_cuociente, rpc.curules_residuo, rpc.curules_cuociente + rpc.curules_residuo total_curules 
+                    FROM emodel.calcula_resultado_pregunta_cuociente rpc 
+                    INNER JOIN emodel.pregunta_opciones po ON po.pregunta_opcion_id = rpc.opcion_id 
+                    INNER JOIN emodel.pregunta_asamblea pa ON pa.pregunta_id = rpc.pregunta_id 
+                    WHERE pa.bandera_votacion = 'A' AND cargo = 'PRINCIPAL' 
+                    ORDER BY po.pregunta_opcion_orden;`; 
+
+  const curuless = `SELECT po.pregunta_opcion_enunciado, rpc.curules_cuociente + rpc.cuociente_residuo AS cifra_repartidora, 
+                    rpc.curules_cuociente, rpc.curules_residuo, rpc.curules_cuociente + rpc.curules_residuo total_curules 
+                    FROM emodel.calcula_resultado_pregunta_cuociente rpc 
+                    INNER JOIN emodel.pregunta_opciones po ON po.pregunta_opcion_id = rpc.opcion_id 
+                    INNER JOIN emodel.pregunta_asamblea pa ON pa.pregunta_id = rpc.pregunta_id 
+                    WHERE pa.bandera_votacion = 'A' AND cargo = 'SUPLENTES' 
+                    ORDER BY po.pregunta_opcion_orden;`; 
+
+                    
+  if (idPregunta != "39") { 
     conexion.query(TexPregunta, (error, results) => {
-        if (error) {
-            throw error;
-        } else {
-            res.render('view_Selec_question', {results: results.rows});
-        }
+      if (error) {
+        throw error;
+      } else {
+        res.render('view_Selec_question', { results: results.rows });
+      }
     });
+  } else {
+    conexion.query(TexPregunta, (error, results) => {
+      if (error) {
+        throw error;
+      } else {
+        conexion.query(votosp, (error1, results1) => {
+          if (error1) {
+            throw error1;
+          } else {
+            conexion.query(votoss, (error4, results4) => {
+              if (error4) {
+                throw error4;
+              } else {
+                conexion.query(coucientep, (error2, results2) => {
+                  if (error2) {
+                    throw error2;
+                  } else {
+                    conexion.query(coucientes, (error5, results5) => {
+                      if (error5) {
+                        throw error5;
+                      } else {
+                        conexion.query(curulesp, (error3, results3) => {
+                          if (error3) {
+                            throw error3;
+                          } else {
+                            conexion.query(curuless, (error6, results6) => {
+                              if (error6) {
+                                throw error6;
+                              } else {
+                                res.render('view_cociente', {
+                                  results:results.rows,
+                                  results1: results1.rows,
+                                  results2: results2.rows,
+                                  results3: results3.rows,
+                                  results4: results4.rows,
+                                  results5: results5.rows,
+                                  results6: results6.rows,
+                                });
+                              }
+                            });
+                          }
+                        });
+                      }
+                    });
+                  }
+                });
+              }
+            });
+          }
+        });
+      }
+    });
+  }
 }
-
 
 exports.salaInOut = (req,res) => {
   const evento = (req.body.evento);
@@ -84,28 +171,57 @@ exports.salaInOut = (req,res) => {
   const message = 'el usuario de código '+ alterno + "estado "+ evento ;
   res.send(`<script>if(confirm('${message}')){window.location.href='/checkInOut'}</script>`); */
 
+  const estadoSala = `select
+  case aa.asistente_activo 
+  when true then 'EN SALA' 
+  when false then 'FUERA DE SALA' 
+  end estado 
+  from emodel.asistencia_asamblea aa 
+  inner join emodel.delegado d 
+  on d.delegado_id = aa.delegado_id 
+  where asamblea_id = 1 and upper(d.delegado_codigo_alterno) = upper('${alterno}')`;
+  
   if (evento === "SALIDA"){
-    conexion.query(inOut, (error, results) => {
-      if (error) {
-        console.log(error);
-        const message = 'el usuario se encuentra fuera de la sala';
+    conexion.query(estadoSala, (error,results)=>{
+    if(error){
+      console.log(error);
+    }else{
+      const estado = results.rows[0].estado;
+      if (estado==="FUERA DE SALA"){
+        const message = 'ERROR: EL USUARIO YA SE ENCUENTRA FUERA DE LA SALA';
         res.send(`<script>if(confirm('${message}')){window.location.href='/checkInOut'}</script>`);
-      } else {
-        console.log(error);
-        const message = 'el usuario se retira de la sala';
-        res.send(`<script>if(confirm('${message}')){window.location.href='/checkInOut'}</script>`);
-      }
-    });
+      }else{
+        conexion.query(inOut, (error, results) => {
+          if (error) {
+            console.log(error);
+          }else{
+            const message = 'el usuario se retira de la sala';
+            res.send(`<script>if(confirm('${message}')){window.location.href='/checkInOut'}</script>`);
+          }
+      });
+    }
+  }
+});
   }else{
-    conexion.query(inOut, (error, results) => {
-      if (error) {
+    conexion.query(estadoSala, (error,results)=>{
+      if(error){
         console.log(error);
-        const message = 'el usuario se encuentra en la sala';
-        res.send(`<script>if(confirm('${message}')){window.location.href='/checkInOut'}</script>`);
-      } else {
-        const message = 'el usuario reingresa a la sala';
-        res.send(`<script>if(confirm('${message}')){window.location.href='/checkInOut'}</script>`);
+      }else{
+        const estado = results.rows[0].estado;
+        if (estado==="EN SALA"){
+          const message = 'ERROR: EL USUARIO YA SE ENCUENTRA EN LA SALA';
+          res.send(`<script>if(confirm('${message}')){window.location.href='/checkInOut'}</script>`);
+        }else{
+          conexion.query(inOut, (error, results) => {
+            if (error) {
+              console.log(error);
+            }else{
+              const message = 'el usuario reingresa a de la sala';
+              res.send(`<script>if(confirm('${message}')){window.location.href='/checkInOut'}</script>`);
+            }
+        });
       }
-    });
+    }
+  });
   }
 }
