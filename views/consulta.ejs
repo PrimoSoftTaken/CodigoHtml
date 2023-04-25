@@ -83,8 +83,9 @@
                 </tr>
                 <tr>
                   <td>
-                      <input type="hidden" name="asambleaId" value="<%= user.asamblea_id %>" />
-                      <input type="hidden" name="delegadoId" value="<%= user.delegado_id %>" />
+                      <input type="hidden" id="asambleaId" name="asambleaId" value="<%= user.asamblea_id %>" />
+                      <input type="hidden" id="delegadoId" name="delegadoId" value="<%= user.delegado_id %>" />
+                      <input type="hidden" id="calterno" name="calterno" value="<%= user.delegado_codigo_alterno %>" />
                   </td>
                 </tr>
                 <% }) %>

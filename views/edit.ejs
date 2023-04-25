@@ -30,7 +30,7 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <!-- Logotipo y enlaces de navegación -->
-          <div class="collapse navbar-collapse" id="navbarToggler">
+        <div class="collapse navbar-collapse" id="navbarToggler">
           <a class="navbar-brand">
             <figure>
               <img src="/images/logo_cpun.png" width="250" alt="Logo de la página web">
@@ -38,7 +38,14 @@
           </a>
           <ul class="navbar-nav d-flex justify-content-center align-items-center">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="/">Registro</a>
+              <div class="dropdown">
+                <a class="nav-link" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-current="page">Registro</a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="/">Inicial</a></li>
+                  <li><a class="dropdown-item" href="/checkInOut">Actividad Sala</a></li>
+                  <li><a class="dropdown-item" href="/estadoEnSala">Quorum Sala</a></li>
+                </ul>
+              </div>
             </li>
             <li class="nav-item">
               <a class="nav-link" href='/general'>Listado general</a>
@@ -56,6 +63,29 @@
   </header>
 
   <main class="main">
+    <section>
+      <form class="main-section_form" action="/respuesta" method="post">
+        <div>
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Opción</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% results.forEach ((user)=> { %>
+                <tr>
+                  <td><%=user.opcion_enunciado %></td>
+                  <td><%= user.votos_opcion %></td>
+                  <td></td>
+                </tr>
+              <%}) %>
+            </tbody>
+          </table>
+        </div>
+      </form>
+    </section>
   
   </main>
 

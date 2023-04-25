@@ -91,7 +91,7 @@
               <%results.forEach ((user)=> { %>              
                 <tr class="main-table_tr ">              
                   <td><%=user.opcion_enunciado %></td>
-                  <td style="<%= user.votos_opcion >= user.umbral_minimo ? 'background-color: green;' : '' %>"><%= user.votos_opcion %></td>
+                  <td style=<"%= user.votos_opcion >= user.umbral_minimo ? 'background-color: green;' : '' %>"><%= user.votos_opcion %></td>
                   <!-- <td><%=user.umbral_minimo %></td>        -->
                 </tr>
               <%}) %>
@@ -113,6 +113,20 @@
         </table>
 
       </div>
+      
+      <!-- Zona para visualizar el gráfico de la pregunta seleccionada -->
+      <style>
+        .chart-container {
+          width: 50%;
+          height: 50%;
+          margin: auto;
+        }
+      </style>
+
+      <div class="card chart-container">
+        <canvas id="myChart"></canvas>        
+      </div>
+
     </section>
   </main>
 
@@ -130,4 +144,24 @@
 <script src="/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js">
+</script>
+
+<script>
+  const ctx = document.getElementById("chart").getContext('2d');
+  const myChart = new Chart(ctx, {
+    type: 'pie',
+    data: {
+      labels: ["rice", "yam", "tomato", "potato",
+      "beans", "maize", "oil"],
+      datasets: [{
+        label: 'food Items',
+        backgroundColor: 'rgba(161, 198, 247, 1)',
+        borderColor: 'rgb(47, 128, 237)',
+        data: [30, 40, 20, 50, 80, 90, 20],
+      }]
+    },
+  });
+</script>
 </html>

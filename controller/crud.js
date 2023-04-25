@@ -167,10 +167,6 @@ exports.salaInOut = (req,res) => {
   const alterno = (req.body.alterno);
   const inOut = `call emodel.registrar_evento_asistencia_asamblea ('${evento}','${alterno}')`;
 
-  /* console.log(evento+" - "+ alterno);
-  const message = 'el usuario de código '+ alterno + "estado "+ evento ;
-  res.send(`<script>if(confirm('${message}')){window.location.href='/checkInOut'}</script>`); */
-
   const estadoSala = `select
   case aa.asistente_activo 
   when true then 'EN SALA' 
@@ -185,6 +181,8 @@ exports.salaInOut = (req,res) => {
     conexion.query(estadoSala, (error,results)=>{
     if(error){
       console.log(error);
+      const message = 'ERROR: EL USUARIO NO EXISTE';
+      res.send(`<script>if(confirm('${message}')){window.location.href='/checkInOut'}</script>`);
     }else{
       const estado = results.rows[0].estado;
       if (estado==="FUERA DE SALA"){
@@ -206,6 +204,8 @@ exports.salaInOut = (req,res) => {
     conexion.query(estadoSala, (error,results)=>{
       if(error){
         console.log(error);
+        const message = 'ERROR: EL USUARIO NO EXISTE';
+      res.send(`<script>if(confirm('${message}')){window.location.href='/checkInOut'}</script>`);
       }else{
         const estado = results.rows[0].estado;
         if (estado==="EN SALA"){
@@ -224,4 +224,22 @@ exports.salaInOut = (req,res) => {
     }
   });
   }
+}
+
+exports.cookie = (req, res) =>{
+  const alterno = "req.body.alterno";
+  const ipAddress = req.header('x-forwarded-for') || req.socket.remoteAddress;
+  const cookieValue = JSON.stringify({ alterno, ipAddress }); // Crear un objeto con la información del dispositivo y la dirección IP
+  res.cookie('miCookie', cookieValue, { maxAge: 24 * 60 * 60 * 1000 }); // Establecer la cookie con el objeto como valor y una caducidad de 24 horas
+  const message = "Conexión establecida";
+  console.log(`La dirección del cliente es: ${ipAddress}`);
+  res.send(`<script>if(confirm('${message}')){window.location.href='/test'}</script>`);
+}
+
+exports.obtenerCookie = (req, res) => {
+  const cookieValue = req.cookies.miCookie; // Obtener el valor de la cookie
+  const cookieData = JSON.parse(cookieValue); // Analizar el valor de la cookie como un objeto JSON
+  const alterno = cookieData.alterno;
+  const ipAddress = cookieData.ipAddress;
+  res.send(`Información de la cookie: <br>Dispositivo: ${alterno}<br>Dirección IP: ${ipAddress}`);
 }
