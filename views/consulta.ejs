@@ -37,20 +37,6 @@
               <img src="/images/logo_cpun.png" width="250" alt="Logo de la página web">
             </figure>
           </a>
-          <ul class="navbar-nav d-flex justify-content-center align-items-center">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="/">Registro</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href='/general'>Listado general</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" href="/create">Preguntas</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/view_questions">Listado de preguntas</a>
-            </li>
-          </ul>
         </div>
       </div>
     </nav>
@@ -84,8 +70,9 @@
                 <tr>
                   <td>
                       <input type="hidden" id="asambleaId" name="asambleaId" value="<%= user.asamblea_id %>" />
+                      <input type="hidden" id="delnombre" name="delnombre" value="<%= user.delegado_nombres %>" />
                       <input type="hidden" id="delegadoId" name="delegadoId" value="<%= user.delegado_id %>" />
-                      <input type="hidden" id="calterno" name="calterno" value="<%= user.delegado_codigo_alterno %>" />
+                      <input type="hidden" id="delcodalterno" name="delcodalterno" value="<%= user.delegado_codigo_alterno %>" />
                   </td>
                 </tr>
                 <% }) %>
@@ -105,12 +92,13 @@
       <p>CooprofesoresUN  <br><b>all right reserved 2023</b> </p>
     </div>
   </footer>
-  
   <!-- JavaScript -->
-  <script src="/javascripts/asamblea.js"></script>
+  <script src="/javascripts/register.js"></script>
   <script src="/javascripts/jquery-3.6.3.min.js"></script>
   <script src="/dist/js/bootstrap.min.js"></script>
   <script src="/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/javascripts/script.js"></script>
 </body>
 
 </html>

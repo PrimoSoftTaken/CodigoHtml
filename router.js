@@ -14,9 +14,18 @@ router.get('/', isLoggedIn,(req,res)=> {
   res.render('index');
 });
 
+router.get('/login',(req,res)=> {
+    res.render('login');
+  });
+
 router.get('/test', (req, res) => {
     res.render('test');
 });
+
+/* enrutamiento hacia la página de creación de preguntas */
+router.get('/create',(req,res)=> {
+    res.render('create');
+})
 
 /* enrutamiento hacia la página de edición de preguntas */
 router.get('/edit',(req,res)=> {
@@ -27,7 +36,7 @@ router.get('/edit',(req,res)=> {
 router.get('/general', (req, res) => {
     const lgeneral = `select d.delegado_id, d.delegado_codigo_alterno, d.delegado_documento_identificacion , d.delegado_nombres, d.delegado_tipo ,aa.fecha_hora_registro_entrada from emodel.delegado d left outer join emodel.asistencia_asamblea aa on d.delegado_id  = aa.delegado_id where d.delegado_tipo  <> 'AGREGADOR_PRINCIPAL' order by aa.fecha_hora_registro_entrada  asc`;
     conexion.query(lgeneral , (error,results)=>{
-        if (error){
+         if (error){
             throw error;
         }else{
             res.render('general', {results:results.rows});
@@ -55,7 +64,7 @@ router.post('/save', crud.save);
 router.post('/read', crud.read);
 router.post('/pregunta', crud.pregunta);
 router.post('/salaInOut', crud.salaInOut);
-router.get('/cookie', crud.cookie);
+router.get('/paVotar', crud.paVotar);
 router.get('/obtenerCookie', crud.obtenerCookie);
 
 /* enrutamiento para visualizar todas las preguntas  */

@@ -41,10 +41,19 @@
             </a>
             <ul class="navbar-nav d-flex justify-content-center align-items-center">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/">Registro</a>
+                <div class="dropdown">
+                  <a class="nav-link" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-current="page">Registro</a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="/checkInOut">Actividad Sala</a></li>
+                    <li><a class="dropdown-item" href="/estadoEnSala">Quorum Sala</a></li>
+                  </ul>
+                </div>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href='/general'>Listado general</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/create">Preguntas</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="/view_questions">Listado de preguntas</a>
@@ -92,11 +101,13 @@
       </div>
     </footer>
       
-<!-- JavaScript -->
-    <script src="/javascripts/asamblea.js"></script>
-    <script src="/javascripts/jquery-3.6.3.min.js"></script>
-    <script src="/dist/js/bootstrap.min.js"></script>
-    <script src="/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- JavaScript -->
+  <script src="/javascripts/register.js"></script>
+  <script src="/javascripts/jquery-3.6.3.min.js"></script>
+  <script src="/dist/js/bootstrap.min.js"></script>
+  <script src="/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/javascripts/script.js"></script>
 
   </body>      
 

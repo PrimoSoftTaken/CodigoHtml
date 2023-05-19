@@ -25,20 +25,12 @@
   font-size: 1.8rem;
 }
 
-.highlight {
-  color: white;
-  background-color: red;
-}
-.highlight2 {
-  color: white;
-  background-color: green;
-}
-.highlight3 {
-  background-color: green;
+.main-section_article{
+  padding: 1.2rem;
+  text-align: center;
 }
 
-.chart-container {
-  width: 50%;
-  height: 50%;
-  margin: auto;
+.btn{
+  padding: 1rem;
+  font-size: medium;
 }

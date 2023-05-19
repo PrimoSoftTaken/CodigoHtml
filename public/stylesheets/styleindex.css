@@ -7,41 +7,18 @@ h1{
 
 .main-section{
     position: relative;
-    padding: 1.5rem;
+    padding: 2rem;
 }
 
-.main-section_form{
-    width: 35rem;
-    height: 20rem;
-    padding: 1.5rem;
-    border: 2px solid #000000;
-    margin: 0 auto;
-    margin-top: 2rem;
+.main-article{
     position: relative;
-}
-
-.main-section_form_inpbox{
-    position: absolute;
-    top: 20%;
-    left: 50%;
+    margin-left: 63%;
     transform: translate(-50%, -50%);
+
 }
 
-.form-control{
-    font-size: medium;
-}
-
-.main-section_form_button{
-    padding: 1rem 2.5rem 1 2.5;
-    position: absolute;
-    top: 70%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    
-}
-
-.btnconsultar{
+.btn{
     padding: 2rem 1rem;
     font-size: medium;
-    
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }

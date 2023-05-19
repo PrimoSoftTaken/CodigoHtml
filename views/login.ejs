@@ -13,7 +13,7 @@
   <link rel="stylesheet" type="text/css" href="/dist/css/bootstrap.min.css">
   <!--CSS-->
   <link href="/stylesheets/styles.css" rel="stylesheet">
-  <link href="/stylesheets/styleInOut.css" rel="stylesheet">
+  <link href="/stylesheets/styleloggin.css" rel="stylesheet">
   <!--Titulo-->
   <title>Sistema de votación</title>
   <!--Favicon-->
@@ -37,27 +37,6 @@
               <img src="/images/logo_cpun.png" width="250" alt="Logo de la página web">
             </figure>
           </a>
-          <ul class="navbar-nav d-flex justify-content-center align-items-center">
-            <li class="nav-item">
-              <div class="dropdown">
-                <a class="nav-link" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-current="page">Registro</a>
-                <ul class="dropdown-menu">
-                  <!-- <li><a class="dropdown-item" href="/">Inicial</a></li> -->
-                  <li><a class="dropdown-item" href="/checkInOut">Actividad Sala</a></li>
-                  <li><a class="dropdown-item" href="/estadoEnSala">Quorum Sala</a></li>
-                </ul>
-              </div>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href='/general'>Listado general</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/create">Preguntas</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/view_questions">Listado de preguntas</a>
-            </li>
-          </ul>
         </div>
       </div>
     </nav>
@@ -68,23 +47,22 @@
     <section class="main-section_cabecera">   
       <div id="cabecera" class="d-flex flex-column justify-content-center align-items-center" >
         <div class="row col-lg-12 text-center">
-          <h1>Control de ingresos</h1>
+          <h1>Registro Asamblea <br> Cooperativa de Profesores de la Universidad Nacional </h1>
         </div>
       </div>
     </section>    
       
     <!-- Formulario -->
     <section class="main-section">
-      <form class="main-section_form" action="/salaInOut" method="post">
+      <form class="main-section_form" action="/read" method="post">
         <div class="main-section_form_inpbox mb-4 col-mb-12" >
           <label for="cedula" class="form-label">
-            <input type="text" class="form-control" id="alterno" name="alterno" aria-describedby="cedula" placeholder="Código alterno" maxlength="5" required>
+            <input type="text" class="form-control" id="cedula" name="cedula" aria-describedby="cedula" placeholder="Cédula" maxlength="10" required>
           </label>
         </div>
-        <div class="main-section_form_button">
-          <button type="submit" class="btn btn-success boton" name="evento" tabindex="5" value="ENTRADA">Entrada sala</button>
-          <button type="submit" class="btn btn-primary boton" name="evento" tabindex="6" value="SALIDA">Salida sala</button>
-        </div>  
+        <div class="mb-4 col-mb-12 main-section_form_button">
+          <button type="submit" class="btn btn-primary btnconsultar" tabindex="5">Consultar</button>
+        </div>
       </form>
     </section>
   </main>

@@ -20,8 +20,8 @@ pool.connect((err, client, release) => {
   const pool = new Pool({
     user: 'adm_evoto',
     password: '4dm_3v0t0',
-    host: '192.168.0.95',
-    port: 5444,
+    host: 'localhost',
+    port: 5432,
     database: 'evoto'
   });
 

@@ -40,13 +40,19 @@
             </a>
             <ul class="navbar-nav d-flex justify-content-center align-items-center">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/">Registro</a>
+                <div class="dropdown">
+                  <a class="nav-link" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-current="page">Registro</a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="/checkInOut">Actividad Sala</a></li>
+                    <li><a class="dropdown-item" href="/estadoEnSala">Quorum Sala</a></li>
+                  </ul>
+                </div>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href='/general'>Listado general</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/create">Moderador</a>
+                <a class="nav-link" href="/create">Preguntas</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="/view_questions">Listado de preguntas</a>
@@ -91,7 +97,7 @@
               <%results.forEach ((user)=> { %>              
                 <tr class="main-table_tr ">              
                   <td><%=user.opcion_enunciado %></td>
-                  <td style=<"%= user.votos_opcion >= user.umbral_minimo ? 'background-color: green;' : '' %>"><%= user.votos_opcion %></td>
+                  <td style="<%= user.votos_opcion >= user.umbral_minimo ? 'background-color: green;' : '' %>"><%= user.votos_opcion %></td>
                   <!-- <td><%=user.umbral_minimo %></td>        -->
                 </tr>
               <%}) %>
@@ -111,22 +117,11 @@
               <% } %>
           </tbody>
         </table>
+        <div clas="chart-container">
+          <canvas id="myChart"></canvas>
+        </div>
 
       </div>
-      
-      <!-- Zona para visualizar el gráfico de la pregunta seleccionada -->
-      <style>
-        .chart-container {
-          width: 50%;
-          height: 50%;
-          margin: auto;
-        }
-      </style>
-
-      <div class="card chart-container">
-        <canvas id="myChart"></canvas>        
-      </div>
-
     </section>
   </main>
 
@@ -137,31 +132,36 @@
   </div>
 </footer>
   
-<!-- JavaScript -->
-<script src="/javascripts/asamblea.js"></script>
-<script src="/javascripts/jquery-3.6.3.min.js"></script>
-<script src="/dist/js/bootstrap.min.js"></script>
-<script src="/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- JavaScript -->
+  <script src="/javascripts/register.js"></script>
+  <script src="/javascripts/jquery-3.6.3.min.js"></script>
+  <script src="/dist/js/bootstrap.min.js"></script>
+  <script src="/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/javascripts/script.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+  
+  <script>
+    const labels = [<% results.forEach((user) => { %>'<%= user.opcion_enunciado %>', <% }) %>];
+    const data = [<% results.forEach((user) => { %><%= user.votos_opcion %>, <% }) %>];
+    const colors = ['#6495ED', '#87CEEB', '#ADD8E6', '#B0C4DE'];
+  
+    // Inicialización del gráfico
+    const ctx = document.getElementById('myChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'pie',
+      data: {
+        datasets: [{
+          data: data,
+          backgroundColor: colors,
+        }],
+        labels: labels,
+      },
+      options: {
+        responsive: true,
+      },
+    });
+  </script>
 </body>
 
-<script
-  src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js">
-</script>
-
-<script>
-  const ctx = document.getElementById("chart").getContext('2d');
-  const myChart = new Chart(ctx, {
-    type: 'pie',
-    data: {
-      labels: ["rice", "yam", "tomato", "potato",
-      "beans", "maize", "oil"],
-      datasets: [{
-        label: 'food Items',
-        backgroundColor: 'rgba(161, 198, 247, 1)',
-        borderColor: 'rgb(47, 128, 237)',
-        data: [30, 40, 20, 50, 80, 90, 20],
-      }]
-    },
-  });
-</script>
 </html>
